@@ -262,15 +262,23 @@ GitLab automatically saves the nightly production site database backups as conta
 
 To retrieve the live site's most revent database container backup: 
 
-1. In the file `.env`, uncomment the last line:
-        
-        MARIADB_DATA_IMAGE=gitlab-registry-production.govcms.amazee.io/${profile_name}/${project_name}/mariadb-drupal-data
-
-2. Log into the Docker Contianer Registry with your GitLab Personal Access Token (your account password won't work)
+1. Log into the Docker Contianer Registry with your GitLab Personal Access Token (your account password won't work)
 
         docker login gitlab-registry-production.govcms.amazee.io -u ${your GitLab login email} -p ${your Personal Access Token}
         
     **Windows users**: If you get an error, try prefixing the command above with `winpty `
+
+2. There are 2 ways to retrieve the database image backup. 
+
+    2.1 In the file `.env`, uncomment the last line:
+        
+        MARIADB_DATA_IMAGE=gitlab-registry-production.govcms.amazee.io/${profile_name}/${project_name}/mariadb-drupal-data
+
+    OR
+
+    2.2 Manually download the image backup using:
+
+        docker pull gitlab-registry-production.govcms.amazee.io/${profile_name}/${project_name}/mariadb-drupal-data
 
 3. Rebuild the containers
 
