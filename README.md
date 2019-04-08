@@ -22,7 +22,7 @@ would actually be run as:
 
 ## Contents
 
-- [Official source material](#official-source-material)
+- [Official source material](#markdown-header-official-source-material)
 - [Requirements](#requirements)
 - [Development Rules](#development-rules)
 - [Setting up a site](#setup)
@@ -34,7 +34,7 @@ would actually be run as:
 - [Known issues and workarounds](#known-issues-and-workarounds)
 - [Notes](#notes)
 
-### <a name="official-source"></a>Official source material
+### Official source material
 
 You don't need to read it for this project, but sometimes it's nice to know the background :) 
 
