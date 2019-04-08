@@ -4,7 +4,7 @@
 
 You're reading the doco! Good on you, keep going! 
 
-**IMPORTANT: This guide was written by a govCMS userm, NOT by the govCMS team, and should therefore NOT be considered official documentation. Use at your own risk!**
+**IMPORTANT: This guide was written by a govCMS SaaS user, NOT by the govCMS team, and should therefore NOT be considered official documentation. Use at your own risk!**
 
 This guide allows you to spin up a new govCMS Drupal 7 SaaS site locally using Docker, then import an existing SaaS site over it for local development. It covers using Windows, Linux or Mac OS, and assumes basic web developer knowledge and experience using a command line. 
 
