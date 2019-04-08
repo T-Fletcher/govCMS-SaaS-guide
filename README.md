@@ -23,16 +23,16 @@ would actually be run as:
 ## Contents
 
 - [Official source material](#markdown-header-official-source-material)
-- [Requirements](#requirements)
-- [Development Rules](#development-rules)
-- [Setting up a site](#setup)
-- [Image updates](#image-updates)
-- [Importing an existing site](#importing-an-existing-site)
-- [Adding development-only modules](#adding-development-only-modules)
-- [Shutting down your computer without losing the work inside your containers](#shutting-down-your-computer-without-losing-the-work-inside-your-containers)
-- [Pushing commits](#pushing-commits)
-- [Known issues and workarounds](#known-issues-and-workarounds)
-- [Notes](#notes)
+- [Requirements](#markdown-header-requirements)
+- [Development Rules](#markdown-header-development-rules)
+- [Setting up a site](#markdown-header-setup)
+- [Image updates](#markdown-header-image-updates)
+- [Importing an existing site](#markdown-header-importing-an-existing-site)
+- [Adding development-only modules](#markdown-header-adding-development-only-modules)
+- [Shutting down your computer without losing the work inside your containers](#markdown-header-shutting-down-your-computer-without-losing-the-work-inside-your-containers)
+- [Pushing commits](#markdown-header-pushing-commits)
+- [Known issues and workarounds](#markdown-header-known-issues-and-workarounds)
+- [Notes](#markdown-header-notes)
 
 ### Official source material
 
