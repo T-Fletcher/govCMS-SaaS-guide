@@ -29,7 +29,7 @@ would actually be run as:
 - [Official source material](#markdown-header-official-source-material)
 - [Requirements](#markdown-header-requirements)
 - [Development Rules](#markdown-header-development-rules)
-- [Setting up a site](#markdown-header-setup)
+- [Setting up a site](#markdown-header-setting-up-a-site)
 - [Image updates](#markdown-header-image-updates)
 - [Importing an existing site](#markdown-header-importing-an-existing-site)
 - [Adding development-only modules](#markdown-header-adding-development-only-modules)
@@ -209,7 +209,7 @@ You can check what is running on these ports with:
 
 
 
-## Images updates
+## Image updates
 Once your site is running correctly, you should check for updates to the images on which it runs regularly. To check for updates:
 
         Mac/Linux:  ahoy pull
