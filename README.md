@@ -2,11 +2,15 @@
 
 **Current as of 21 February 2019.**
 
-You're reading the doco! Good on you, keep going!
+You're reading the doco! Good on you, keep going! 
 
-This project allows you to spin up a new govCMS Drupal 7 SaaS site locally using Docker, then import your site over it for local development. It assumes basic web developer knowledge and experience using a command line. 
+**IMPORTANT: This guide was written by a govCMS userm, NOT by the govCMS team, and should therefore NOT be considered official documentation. Use at your own risk!**
 
-**Before you can clone anything from projects.govcms.gov.au, you must have an account created by the govCMS team, with access to the appropriate projects.** Your project manager can request this by emailing support@govcms.gov.au. While anyone can create a new govCMS site, importing a govCMS client site requires appropriate access to the site project repository to have already been granted by the Department of Finance. 
+This guide allows you to spin up a new govCMS Drupal 7 SaaS site locally using Docker, then import an existing SaaS site over it for local development. It covers using Windows, Linux or Mac OS, and assumes basic web developer knowledge and experience using a command line. 
+
+While anyone can create a new govCMS site via the official distro, importing a govCMS SaaS client site requires appropriate access to the site project repository to have already been granted by the Department of Finance. 
+
+**This involves having an account created by the govCMS team, with access to the appropriate projects.** Your project manager can request this by emailing support@govcms.gov.au.
 
 **Running commands from this documentation**
 
@@ -45,7 +49,7 @@ You don't need to read it for this project, but sometimes it's nice to know the 
 Documentation on debugging Docker for Windows issues lives on the [Amazeeio GitHub profile](https://github.com/amazeeio/docs/blob/master/local_docker_development/troubleshooting.md).
 
 
-## <a name="requirements"></a>Requirements
+## Requirements
 
 Version numbers are noted where applicable. 
 
@@ -77,7 +81,7 @@ Version numbers are noted where applicable.
 
 
 
-## <a name="dev-rules"></a>Development rules
+## Development rules
 
 * You should create your theme(s) in folders under `/themes`
 * Tests specific to your site can be committed to the `/tests` folders
@@ -89,9 +93,9 @@ Version numbers are noted where applicable.
 
 
 
-## <a name="setup"></a>Setting up a site
+## Setting up a site
 
-### <a name="connect"></a>1. Connect to projects.govcms.gov.au
+### 1. Connect to projects.govcms.gov.au
 
 **Before you can clone anything from projects.govcms.gov.au, you must have an account created by the GovCMS team. Your project manager can request this by emailing support@govcms.gov.au**.
 
@@ -124,7 +128,7 @@ The first time you connect to a new Host, you may get a message like this. Just 
 If you create a new SSH key pair, and they do NOT use the default SSH key names `id_rsa` and `id_rsa.pub`, you may need to update your `~/.ssh/config` file to [use those particular keys for that particular connection](https://www.stackoverflow.com/questions/2419566/best-way-to-use-multiple-ssh-private-keys-on-one-client). If SSH still refuses the connection, try using your existing `id_rsa` key. 
 
 
-### <a name="clone-it"></a>2. Clone the project repo
+### 2. Clone the project repo
 
 Once you're all connected, navigate to wherever you want to keep the project and clone it down. This command will pull down the project and place it in a directory called '${project_name}':
 
@@ -143,7 +147,7 @@ In addition to the project repo, also clone the `amazee-docker-windows` repo - t
 
 This is a public repo, so you don't need a PAT to access it. Attempting to use an SSH version of the URL will fail too, unless you have an account on Amazee's GitHub profile.
 
-### <a name="build-it"></a>3. Build it and run it
+### 3. Build it and run it
 
 **Make sure you don't have anything running on port `80` on the host machine (like an Apache web server from XAMP, WAMP, LAMP etc, or Skype).** 
 
@@ -205,7 +209,7 @@ You can check what is running on these ports with:
 
 
 
-## <a name="image-updates"></a>Images updates
+## Images updates
 Once your site is running correctly, you should check for updates to the images on which it runs regularly. To check for updates:
 
         Mac/Linux:  ahoy pull
@@ -215,7 +219,7 @@ If any updates are found, you'll need to rebuild your containers.
 
 
 
-## <a name="importing-existing"></a>Importing an existing site
+## Importing an existing site
 
 You can install a base govCMS site from this project, then import the files and database of your production site.
 
@@ -225,7 +229,7 @@ You can install a base govCMS site from this project, then import the files and 
 - GovCMS Dashboard databases are automatically sanitized, so your normal login won't work! See the [Notes section](#notes) at the bottom for more information. 
 
 
-### <a name="importing-database"></a>Importing a database
+### Importing a database
 
 You can either import a local database file via Drush, or rest your fingers while Docker retrieves the latest production site database backup and imports it for you. The ability to take direct MySQL backups on demand is not currently supported.
 
@@ -295,7 +299,7 @@ If it works, your local site URL will load a copy of your prodution site. If thi
 Once complete, you'll need to use [Drush to make your user account an administrator](#notes), [enable `stage_file_proxy`](#importing-files) and [other development modules](#dev-modules) ([See Step 6 of 'Build it and Run it'](#build-it)) etc. 
 
 
-### <a name="importing-files"></a>Importing files
+### Importing files
 
 Files can be included in several ways.
 
@@ -343,7 +347,7 @@ e.g. adding a PDF file to `${project-root}/files/myfile.pdf` will make that file
 You *can* add a copy of the entire production site filebase, however this is a heavy-handed solution when the majority of files included probably won't be required for your development tasks.
 
 
-## <a name="dev-modules"></a>Adding development-only modules
+## Adding development-only modules
 
 For _new_ modules to work i.e. ones not included in the govCMS installation profile, they need to be present in several Docker containers. Downloading them via Drush alone won't work, and you may get errors when trying to use them. 
 
@@ -390,7 +394,7 @@ services:
         Windows:    docker-compose exec -T test drush en ${module_name}
 
 
-## <a name="shutting-down"></a>Shutting down your computer without losing the work inside your containers
+## Shutting down your computer without losing the work inside your containers
 
 Docker containers will remain intact unless you explicitly delete them. This means you can turn of your development machine without losing your work.
 
@@ -412,7 +416,7 @@ Changes made to files *outside* the containers, such as in `/files` and `/themes
 
 
 
-## <a name="pushing-commits"></a>Pushing commits
+## Pushing commits
 
 Before pushing anything back up to GitLab, you should confirm your local Git user name and email. If this differs from those used by your GitLab account, your commits will show as originating from a different user (but will stil be permitted). 
 
@@ -431,7 +435,7 @@ You can then specify different user details for specific repositories using this
 
 
 
-## <a name="known-issues"></a>Known issues and workarounds
+## Known issues and workarounds
 
 1. This process only applies to the `7.x-3.x` branch of GovCMS
 2. ~~Currently (Nov 2018), all local projects utilise the same LOCALDEV_URL. The URL used is hardcoded in. GovCMS is aware and working on a fix. To access different sites, shut down the containers of all except the one you want to see at that URL.~~
@@ -465,7 +469,7 @@ You can then specify different user details for specific repositories using this
 
 
 
-## <a name="notes"></a>Notes 
+## Notes 
 - Windows users can find the `docker` commands listed in this guide inside the `.ahoy.yml` file.
 - Unless you import a database dump from another site, the out-of-the-box govCMS site will only contain the user 'admin'.
 - If you import a database dump from a site where your user account is NOT an administrator, you can become one by assigning your account the administrator role running:
