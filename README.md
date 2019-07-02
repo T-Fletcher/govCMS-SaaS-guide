@@ -1,4 +1,4 @@
-**Be sure to replicate any changes here in the [govCMS developer guide](https://github.com/govCMS/govCMS/wiki/Unofficial-govCMS-SaaS-developer-guide#setting-up-a-site)!**
+**Be sure to replicate any changes here in the [govCMS developer guide](https://github.com/govCMS/govCMS/wiki/Unofficial-govCMS-SaaS-developer-guide)!**
 
 # govCMS SaaS project
 
