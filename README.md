@@ -227,7 +227,7 @@ You can install a base govCMS site from this project, then import the files and 
 
 **Important!** 
 
-- For imported backups to work, your local site must already have a vanilla govCMS site installed, otherwise you'll get a 503 error when loading the site. This is because the installation process includes scripts that must be run in multiple containers. See [Step 5 of Build it and Run it](#build-it)
+- For imported backups to work, your local site must already have a vanilla govCMS site installed, otherwise you'll get a 503 error when loading the site. This is because the installation process includes scripts that must be run in multiple containers. See [Step 5 of Build it and Run it](#3-build-it-and-run-it)
 - GovCMS Dashboard databases are automatically sanitized, so your normal login won't work! See the [Notes section](#notes) at the bottom for more information. 
 
 
