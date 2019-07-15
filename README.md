@@ -24,7 +24,7 @@ would actually be run as:
 
     cd  mygreatproject
 
-**Be sure to read the '[Known issues and workarounds](#known-issues)' section at the end of this document.**
+**Be sure to read the '[Known issues and workarounds](#known-issues-and-workarounds)' section at the end of this document.**
 
 ## Contents
 
@@ -68,7 +68,7 @@ Version numbers are noted where applicable.
 **Windows users**
 
 * Windows 10 Pro or Enterprise (Docker can't run on Windows Home edition as it doesn't come with Hyper-V)
-* [Amazee Docker for Windows](https://github.com/amazeeio/amazeeio-docker-windows) - A set of additional Docker containers related to networking that run in Windows, in the absence of `pygmy` (it's just set of containers, not an Amazee-specific version of the program 'Docker for Windows'). Cloning instructions are in the '[Clone the project repo](#clone-it)' section.
+* [Amazee Docker for Windows](https://github.com/amazeeio/amazeeio-docker-windows) - A set of additional Docker containers related to networking that run in Windows, in the absence of `pygmy` (it's just set of containers, not an Amazee-specific version of the program 'Docker for Windows'). Cloning instructions are in the '[Clone the project repo](#2-clone-the-project-repo)' section.
 
 
 **Optional**
@@ -89,7 +89,7 @@ Version numbers are noted where applicable.
 * Tests specific to your site can be committed to the `/tests` folders
 * The files folder is not (currently) committed to GitLab.
 * Do not make changes to `docker-compose.yml`, `lagoon.yml`, `.gitlab-ci.yml`, `.ahoy.yml`, `README.md`, or the Dockerfiles under `/.docker` - Altering these files will result in the project being unable to deploy to GovCMS SaaS. These files are locked in GitLab, so attempting to push changes will fail anyway. 
-* Some files can be extended/overridden by including additional files (see the '[Adding development modules](#dev-modules)' section)
+* Some files can be extended/overridden by including additional files (see the '[Adding development modules](#adding-development-only-modules)' section)
 * You should never need to change anything _inside_ a Docker container. Directly altering the contents of a container compromises it, meaning when a new instance of the project is spun up, those alterations won't be present.
 * **Check for image updates every day!** To ensure you are running the latest environment, and therefore that your local work runs in a setup that accurately reflects the production environment, be sure to [pull down the latest images from the container registry](#image-updates) every day.   
 
@@ -110,7 +110,7 @@ You can either connect to `projects.govcms.gov.au` via HTTPS using a Personal Ac
 There's two scenarios where HTTPS is used:
 
 - If you use HTTPS for the repository URL when cloning, and
-- When [retrieving a copy of the production website database container from the GitLab Container Registry](#importing-database).
+- When [retrieving a copy of the production website database container from the GitLab Container Registry](#importing-a-database).
 
 Creating the personal access token is done via the GitLab web interface for projects.govcms.gov.au. The name of the token can be whatever you prefer, and the scope should be set to `read_registry`. **Note that you need to keep a copy of the token when you generate it because you cannot access it later.**
 
@@ -298,7 +298,7 @@ If it works, your local site URL will load a copy of your prodution site. If thi
     docker pull gitlab-registry-production.govcms.amazee.io/${profile_name}/${project_name}/mariadb-drupal-data
     docker-compose up -d --build
 
-Once complete, you'll need to use [Drush to make your user account an administrator](#notes), [enable `stage_file_proxy`](#importing-files) and [other development modules](#dev-modules) ([See Step 6 of 'Build it and Run it'](#build-it)) etc. 
+Once complete, you'll need to use [Drush to make your user account an administrator](#notes), [enable `stage_file_proxy`](#importing-files) and [other development modules](#adding-development-only-modules) ([See Step 6 of 'Build it and Run it'](#build-it-and-run-it)) etc. 
 
 
 ### Importing files
@@ -388,7 +388,7 @@ services:
         Mac/Linux:  ahoy drush dl ${module_name} --destination='/app/sites/default/modules/dev_modules'
         Windows:    docker-compose exec -T test drush dl ${module_name} --destination='/app/sites/default/modules/dev_modules'
 
-    If you see a message showing a different path, check the [Known Issues](#known-issues).
+    If you see a message showing a different path, check the [Known Issues](#known-issues-and-workarounds).
 
 5. You should be able to enable your new module from the Modules UI (if you are an Admin) or via drush: 
 
@@ -442,7 +442,7 @@ You can then specify different user details for specific repositories using this
 1. This process only applies to the `7.x-3.x` branch of GovCMS
 2. ~~Currently (Nov 2018), all local projects utilise the same LOCALDEV_URL. The URL used is hardcoded in. GovCMS is aware and working on a fix. To access different sites, shut down the containers of all except the one you want to see at that URL.~~
 3. The container 'test' cannot have its name changed. This prevents Drupal from being able to connect to the database for some reason.
-4. When logging into the site for the first time, the 'Reset password' page does not allow resetting the password, complaining  `Password may only be changed in 24 hours from the last change`. See [Step 6 of Setup](#) for the workaround. 
+4. When logging into the site for the first time, the 'Reset password' page does not allow resetting the password, complaining  `Password may only be changed in 24 hours from the last change`. See [Step 6 of Setup](#3-build-it-and-run-it) for the workaround. 
 5. ~~Attempting to import database dumps from the govCMS Dashboard using `ahoy mysql-import ${database.sql}` will fail, as currently (10 Dec 2018) the Docker configuration only works with databases called `drupal`. See 'Importing a database, Step 2' below for the workaround.~~
 
 **Issues running Docker on Windows**
@@ -459,7 +459,7 @@ You can then specify different user details for specific repositories using this
   
     This is a [known bug in Docker](https://github.com/docker/for-win/issues/1038), that relates to Windows Fast Boot. Either disable Fast Boot, or just restart Docker once Windows loads. Annoying but effective. 
 
-3. If you're using Git Bash on Windows as your CLI, you may get an error like this when referencing locations inside Containers, such as when [Adding development modules](#dev-modules):
+3. If you're using Git Bash on Windows as your CLI, you may get an error like this when referencing locations inside Containers, such as when [Adding development modules](#adding-development-only-modules):
 
     `The directory C:/Program Files/Git/app/sites/default/modules/dev_modules does not exist.`
 
