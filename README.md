@@ -1,4 +1,4 @@
-**Be sure to replicate any changes here in the [govCMS developer guide](https://github.com/govCMS/govCMS/wiki/Unofficial-govCMS-SaaS-developer-guide)!**
+**Be sure to replicate any changes here in the [govCMS developer guide](https://github.com/govCMS/govCMS/wiki/An-all-in-one-developer-guide-govCMS-SaaS)!**
 
 # govCMS SaaS project
 
